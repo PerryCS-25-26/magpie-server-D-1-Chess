@@ -67,7 +67,7 @@ public class Magpie
         {
             response = getRandomResponse();
         }
-                return response;
+            return response;
     }
 
     /**
