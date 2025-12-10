@@ -54,11 +54,19 @@ public class Magpie
             response = "Screw you.";
         }
 
+        // Responses which require transformations
+         else if (findKeyword(statement, "I want to") >= 0) {
+            response = transformIWantToStatement(statement);
+         }
+        else if (findKeyword(statement, "you") >= 0 
+            && findKeyword(statement, "me") > findKeyword(statement, "you"))
+        {
+            response = transformYouMeStatement(statement);
+        }
         else
         {
             response = getRandomResponse();
         }
-        return response;
     }
 
     /**
