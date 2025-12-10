@@ -21,6 +21,9 @@ public class MagpieServer implements HttpHandler
         // Attempt to serve a file from the public folder for any GET request
         if ("POST".equals(requestMethod) && requestPath.equals("/chat")) 
         {
+            
+            System.out.println("HELLOx");
+
             String statement = new String(exchange.getRequestBody().readAllBytes());
             System.out.println("user said; " + statement);
             String response = maggie.getResponse(statement);
@@ -37,6 +40,7 @@ public class MagpieServer implements HttpHandler
             // If the request is not a GET request, return a 405 Method Not Allowed error
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_METHOD, 0);
             exchange.getResponseBody().close();
+            System.out.println("HELLO");
         }
     }
 

@@ -50,7 +50,7 @@ public class Magpie
             response = "He sounds like a teacher.";
 
         }
-        else if (findKeyword(statement, "", 0) >=0) {
+        else if (statement.trim().length() <=0) {
             response = "Screw you.";
         }
 
