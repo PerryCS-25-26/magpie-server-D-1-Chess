@@ -35,22 +35,22 @@ public class Magpie
         {
             response = "ok.";
         }
-        else if (statement.indexOf("mother") >= 0
-                 || statement.indexOf("father") >= 0
-                 || statement.indexOf("sister") >= 0
-                 || statement.indexOf("brother") >= 0)
+        else if (findKeyword(statement, "mother", 0) >=0
+                 || findKeyword(statement, "father", 0) >=0
+                 || findKeyword(statement, "sister", 0) >=0
+                 || findKeyword(statement, "brother", 0) >=0)
         {
             response = "Tell me more about your family.";
         }
-        else if (statement.indexOf("dog") >=0
-                 || statement.indexOf("cat")>=0) {
+        else if (findKeyword(statement, "dog", 0) >=0
+              || findKeyword(statement, "cat", 0) >=0) {
             response = "Tell me more about your pets.";
         }
-        else if (statement.indexOf("Mr.")>=0) {
+        else if (findKeyword(statement, "Mr.", 0) >=0) {
             response = "He sounds like a teacher.";
 
         }
-        else if (statement.indexOf("")>=0) {
+        else if (findKeyword(statement, "", 0) >=0) {
             response = "Screw you.";
         }
 
