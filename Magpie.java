@@ -186,4 +186,50 @@ private static int findKeyword(String statement, String goal)
 
 
 
+
+    /**
+     * Take a statement with "I want to <something>." and transform it into 
+     * "What would it mean to <something>?"
+     * @param statement the user statement, assumed to contain "I want to"
+     * @return the transformed statement
+     */
+    private String transformIWantToStatement(String statement)
+    {
+        // Remove the final period, if there is one
+        statement = statement.trim();
+        String lastChar = statement.substring(statement.length() - 1);
+        if (lastChar.equals("."))
+        {
+            statement = statement.substring(0, statement.length() - 1);
+        }
+
+        // Transform the statement into a question
+        String kw = "I want to";
+        int psn = findKeyword (statement, kw);
+        String restOfStatement = statement.substring(psn + kw.length()).trim();
+        return "What would it mean to " + restOfStatement + "?";
+    }
+
+
+
+   /**
+     * Take a statement with "you <something> me" and transform it into 
+     * "What makes you think that I <something> you?"
+     * @param statement the user statement, assumed to contain "you" followed by "me"
+     * @return the transformed statement
+     */
+   private String transformYouMeStatement(String statement)
+   {
+       String you = "you";
+       String me = "me";
+       int psnOfYou = findKeyword (statement, you, 0);
+       int psnOfMe = findKeyword (statement, me, psnOfYou + you.length());
+
+       String restOfStatement = statement.substring(psnOfYou + you.length(), psnOfMe).trim();
+       return "What makes you think that I " + restOfStatement + " you?";
+   }
+
+
+
+
 }
