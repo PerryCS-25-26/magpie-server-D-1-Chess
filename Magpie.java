@@ -63,6 +63,10 @@ public class Magpie
         {
             response = transformYouMeStatement(statement);
         }
+        else if (findKeyword(statement, "I want ")>=0)
+        {
+            response = transformIWantSomethingStatement(statement);
+        }
         else
         {
             response = getRandomResponse();
@@ -236,6 +240,27 @@ private static int findKeyword(String statement, String goal)
 
        String restOfStatement = statement.substring(psnOfYou + you.length(), psnOfMe).trim();
        return "What makes you think that I " + restOfStatement + " you?";
+   }
+
+
+
+
+
+   private String transformIWantSomethingStatement(String statement)
+   {
+       // Remove the final period, if there is one
+       statement = statement.trim();
+       String lastChar = statement.substring(statement.length() - 1);
+       if (lastChar.equals("."))
+       {
+           statement = statement.substring(0, statement.length() - 1);
+       }
+
+       // Transform the statement into a question
+       String kw = "I want ";
+       int psn = findKeyword (statement, kw);
+       String restOfStatement = statement.substring(psn + kw.length()).trim();
+       return "Would you really be happy if you had " + restOfStatement + "?";
    }
 
 
